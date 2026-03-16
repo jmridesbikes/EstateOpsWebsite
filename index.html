@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EstateOps – Lightweight Task Management for Trustees & Caretakers</title>
+  <meta name="description" content="The swiss army knife of maintenance management. Create tasks, get notified, triage by urgency. Built for estate trustees and caretakers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-text: #000000;
+      --color-text-muted: #6b7280;
+      --color-accent: #5034ff;
+      --color-accent-hover: #4022e8;
+      --color-border: #e5e7eb;
+      --radius: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text);
+      background: var(--color-bg);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      padding: 2rem 0 2.5rem;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+
+    .logo-img {
+      flex-shrink: 0;
+      height: 120px;
+      width: auto;
+      display: block;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    .hero {
+      padding: 0 0 2.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--color-text);
+      margin-bottom: 2rem;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .waitlist-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .waitlist-form input {
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 1rem;
+      background: white;
+    }
+
+    .waitlist-form input::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .waitlist-form input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .waitlist-form button {
+      padding: 0.875rem 1.5rem;
+      background: var(--color-accent);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .waitlist-form button:hover {
+      background: var(--color-accent-hover);
+    }
+
+    .waitlist-form .success,
+    .waitlist-form .error {
+      font-size: 0.9rem;
+    }
+
+    .waitlist-form .success { color: #059669; }
+    .waitlist-form .error { color: #dc2626; }
+
+    .content {
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .content .tagline {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .features {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .feature {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .feature:last-child {
+      border-bottom: none;
+    }
+
+    .feature h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature p {
+      color: var(--color-text-muted);
+      font-size: 0.9375rem;
+    }
+
+    footer {
+      padding: 3rem 0 2rem;
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-wrap">
+        <img src="assets/estate-ops-logo.svg" alt="EstateOps" class="logo-img" width="168" height="56">
+        <span class="logo">EstateOps</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>The Swiss Army Knife of Maintenance Management</h1>
+
+        <!-- Replace YOUR_GOOGLE_APPS_SCRIPT_URL with your deployed Web App URL (see google-apps-script/SETUP.md) -->
+        <form class="waitlist-form" action="https://script.google.com/macros/s/AKfycbyKRxCepQyiUuL-d0qaC_HBPAUl_UtYbb7SsHfgiBT7bLgsqQmWf6jLAyxBiCjdW_aI/exec" method="post" id="waitlist-form">
+          <input type="email" name="email" placeholder="Your email address" required>
+          <input type="text" name="name" placeholder="Your name (optional)">
+          <button type="submit">Join the waiting list</button>
+          <div class="success" id="form-success" style="display:none;">Thanks for signing up! We look forward to working with you.</div>
+          <div class="error" id="form-error" style="display:none;">Something went wrong. Please try again.</div>
+        </form>
+      </section>
+
+      <section class="content">
+        <p class="tagline">
+          EstateOps is a simple tool that helps you manage repairs and upkeep on your estate. Like a Swiss Army knife—it does everything you need.
+        </p>
+
+        <div class="features">
+          <article class="feature">
+            <h3>For Trustees</h3>
+            <p>Create jobs in seconds. Write down what needs fixing, say how urgent it is, and the caretaker gets a message right away.</p>
+          </article>
+          <article class="feature">
+            <h3>For Caretakers</h3>
+            <p>Get an alert when a new job is added. Mark it done when you've finished—no confusion about what's left to do.</p>
+          </article>
+          <article class="feature">
+            <h3>Urgent Jobs First</h3>
+            <p>The most urgent jobs show up first. Fix what matters most, when it matters most.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>EstateOps – Simple tools for looking after your estate.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Show success message when returning from Apps Script redirect (?joined=1)
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('joined') === '1') {
+        const successEl = document.getElementById('form-success');
+        if (successEl) {
+          successEl.style.display = 'block';
+        }
+        // Clean URL without reload
+        window.history.replaceState({}, document.title, window.location.pathname || '/');
+      }
+    })();
+  </script>
+</body>
+</html>
